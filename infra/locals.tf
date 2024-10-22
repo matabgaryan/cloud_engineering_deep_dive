@@ -3,8 +3,11 @@ module "network_secret_ro" {
   secret_id = "${terraform.workspace}/core-infra-secrets"
 }
 
-data "aws_region" "current" {}
+output "network_secrets" {
+  value = module.network_secret_ro.secret_map
+}
 
+data "aws_region" "current" {}
 
 locals {
   az_suffix    = ["a", "b", "c", "d", "e", "f"]
